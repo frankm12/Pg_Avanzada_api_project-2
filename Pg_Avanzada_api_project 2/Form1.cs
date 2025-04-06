@@ -18,6 +18,7 @@ namespace Pg_Avanzada_api_project_2
         {
             InitializeComponent();
             tableLayoutPanel1.Width = 69;
+            //llamamos el metodo dashboard para que se abra cuando se inicie el programa
             AbrirDashboard();
         }
         public void AbrirDashboard()
