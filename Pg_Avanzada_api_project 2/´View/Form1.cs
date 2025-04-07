@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pg_Avanzada_api_project_2._View;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +14,12 @@ namespace Pg_Avanzada_api_project_2
     public partial class Form1 : Form
     {
         Form2 dashboard;
+        Buscar_form buscar_Form;
         bool sidebarExpand = true;
         public Form1()
         {
             InitializeComponent();
-            tableLayoutPanel1.Width = 69;
+            tableLayoutPanel1.Width = 90;
             //llamamos el metodo dashboard para que se abra cuando se inicie el programa
             AbrirDashboard();
         }
@@ -34,6 +36,25 @@ namespace Pg_Avanzada_api_project_2
                 dashboard.MdiParent = this;
                 dashboard.Dock = DockStyle.Fill;
                 dashboard.Show();
+            }
+            else
+            {
+                dashboard.Activate();
+            }
+        }
+        public void AbrirBuscar()
+        {
+            btn_buscar.Text = "";
+            btn_dashboard.Text = "";
+            btn_graficos.Text = "";
+            btn_informacion.Text = "";
+            if (buscar_Form == null)
+            {
+                buscar_Form = new Buscar_form();
+                buscar_Form.FormClosed += Dashboard_FormClosed;
+                buscar_Form.MdiParent = this;
+                buscar_Form.Dock = DockStyle.Fill;
+                buscar_Form.Show();
             }
             else
             {
@@ -69,7 +90,7 @@ namespace Pg_Avanzada_api_project_2
                 btn_graficos.Text = "";
                 btn_informacion.Text = "";
                 tableLayoutPanel1.Width -= 5;
-                if (tableLayoutPanel1.Width <= 69)
+                if (tableLayoutPanel1.Width <= 90)
                 {
 
                     sidebarExpand = true;
@@ -99,6 +120,11 @@ namespace Pg_Avanzada_api_project_2
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
             dashboard = null;
+        }
+
+        private void btn_buscar_Click(object sender, EventArgs e)
+        {
+            AbrirBuscar();
         }
     }
 }

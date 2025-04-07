@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Pg_Avanzada_api_project_2
+namespace Pg_Avanzada_api_project_2._View
 {
-    public partial class Form2 : Form
+    public partial class Buscar_form : Form
     {
-        public Form2()
+        public Buscar_form()
         {
             InitializeComponent();
         }

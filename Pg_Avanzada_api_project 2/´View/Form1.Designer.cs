@@ -68,9 +68,9 @@
             this.lbl_dashboard.AutoSize = true;
             this.lbl_dashboard.Font = new System.Drawing.Font("Franklin Gothic Book", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_dashboard.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(211)))), ((int)(((byte)(68)))));
-            this.lbl_dashboard.Location = new System.Drawing.Point(91, 10);
+            this.lbl_dashboard.Location = new System.Drawing.Point(114, 10);
             this.lbl_dashboard.Name = "lbl_dashboard";
-            this.lbl_dashboard.Size = new System.Drawing.Size(183, 39);
+            this.lbl_dashboard.Size = new System.Drawing.Size(178, 38);
             this.lbl_dashboard.TabIndex = 2;
             this.lbl_dashboard.Text = "Dashboard";
             // 
@@ -139,6 +139,7 @@
             this.btn_buscar.TabIndex = 2;
             this.btn_buscar.Text = "Buscar";
             this.btn_buscar.UseVisualStyleBackColor = false;
+            this.btn_buscar.Click += new System.EventHandler(this.btn_buscar_Click);
             // 
             // pn_graficos
             // 
