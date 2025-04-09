@@ -33,7 +33,6 @@ namespace Pg_Avanzada_api_project_2
             // Configuración básica del Chart (si no se hizo en el diseñador)
             chart1.ChartAreas.Add(new ChartArea());
         }
-
         public void DisplayCryptocurrencies(List<CryptocurrencyModel> cryptocurrencies)
         {
             if (cryptocurrencies == null || cryptocurrencies.Count == 0)
@@ -41,11 +40,38 @@ namespace Pg_Avanzada_api_project_2
                 MessageBox.Show("No hay datos para mostrar.");
                 return;
             }
+
+            // Ajustar el Chart al contenedor
             chart1.Dock = DockStyle.Fill;
             chart1.Series.Clear();
-            chart1.ChartAreas[0].AxisY.IsLogarithmic = true;
+            chart1.Legends.Clear(); // Eliminar la leyenda si no es necesaria
+            chart1.ChartAreas.Clear(); // Limpiar áreas previas
 
+            // Crear nueva área de gráfico
+            ChartArea chartArea = new ChartArea("MainArea");
+            chartArea.AxisY.IsLogarithmic = true;
 
+            // Estilo del eje X
+            chartArea.AxisX.Interval = 1;
+            chartArea.AxisX.LabelStyle.Angle = -45;
+            chartArea.AxisX.Title = "Criptomonedas";
+
+            // Estilo del eje Y
+            chartArea.AxisY.Title = "Precio en USD";
+
+            // Margen automático
+            chartArea.Position.Auto = true;
+
+            // Alternativa: Forzar 100% del área
+            //chartArea.Position.Auto = false;
+            //chartArea.Position.X = 0;
+            //chartArea.Position.Y = 0;
+            //chartArea.Position.Width = 100;
+            //chartArea.Position.Height = 100;
+
+            chart1.ChartAreas.Add(chartArea);
+
+            // Crear serie de datos
             Series series = new Series("Criptomonedas")
             {
                 ChartType = SeriesChartType.Column,
@@ -53,42 +79,19 @@ namespace Pg_Avanzada_api_project_2
                 Color = Color.MediumSlateBlue
             };
 
-            // Solo tomar los primeros 10 (puedes cambiar el número)
             var topCryptos = cryptocurrencies.Take(10);
-
             foreach (var crypto in topCryptos)
             {
                 series.Points.AddXY(crypto.name, crypto.current_price);
             }
 
             chart1.Series.Add(series);
-
-
-            // Ajustes visuales
-            chart1.ChartAreas[0].AxisX.Interval = 1;
-            chart1.ChartAreas[0].AxisX.LabelStyle.Angle = -45;
-            chart1.ChartAreas[0].AxisY.Title = "Precio en USD";
-            chart1.ChartAreas[0].AxisX.Title = "Criptomonedas";
-            // Ajustar área general del gráfico
-            /*chart1.ChartAreas[0].Position.Auto = false;
-            chart1.ChartAreas[0].Position.X = 0;
-            chart1.ChartAreas[0].Position.Y = 0;
-            chart1.ChartAreas[0].Position.Width = 90;
-            chart1.ChartAreas[0].Position.Height = 90;*/
-
-            // Opcional: quita márgenes automáticos del eje X
-            chart1.ChartAreas[0].AxisX.IsMarginVisible = false;
-
         }
+
 
         public void ShowError(string message)
         {
             MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void Form2_Load(object sender, EventArgs e)
