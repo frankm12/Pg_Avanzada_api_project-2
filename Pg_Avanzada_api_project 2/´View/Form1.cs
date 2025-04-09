@@ -41,6 +41,8 @@ namespace Pg_Avanzada_api_project_2
             {
                 dashboard.Activate();
             }
+
+
         }
         public void AbrirBuscar()
         {
@@ -65,9 +67,10 @@ namespace Pg_Avanzada_api_project_2
         private void menuTransition_Tick(object sender, EventArgs e)
         {
 
+            
             if (sidebarExpand)
             {
-                tableLayoutPanel1.Width += 5;
+                tableLayoutPanel1.Width += 10;
                 if (tableLayoutPanel1.Width >= 262)
                 {
                     sidebarExpand = false;
@@ -80,6 +83,7 @@ namespace Pg_Avanzada_api_project_2
                     btn_dashboard.Text = "Dashboard";
                     btn_graficos.Text = "Graficos";
                     btn_informacion.Text = "Información";
+
                 }
 
             } 
@@ -89,8 +93,9 @@ namespace Pg_Avanzada_api_project_2
                 btn_dashboard.Text = "";
                 btn_graficos.Text = "";
                 btn_informacion.Text = "";
-                tableLayoutPanel1.Width -= 5;
+                tableLayoutPanel1.Width -= 10;
                 if (tableLayoutPanel1.Width <= 90)
+
                 {
 
                     sidebarExpand = true;

@@ -61,10 +61,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\ITrendingCryptocurrencyView.cs" />
     <Compile Include="Model\CryptocurrencyModel.cs" />
+    <Compile Include="Model\Trending_Model.cs" />
     <Compile Include="Presenter\CryptocurrencyPresenter.cs" />
+    <Compile Include="Presenter\TrendingCryptocurrencyPresenter.cs" />
     <Compile Include="Services\CoinGeckoApiService.cs" />
-    <Compile Include="Services\IApiService.cs" />
+    <Compile Include="Interfaces\IApiService.cs" />
+    <Compile Include="Services\Trending_api_services.cs" />
     <Compile Include="´View\Buscar_form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -85,7 +89,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="´View\ICryptocurrencyView.cs" />
+    <Compile Include="Interfaces\ICryptocurrencyView.cs" />
     <Compile Include="´View\IViewFormulario_Principal.cs" />
     <EmbeddedResource Include="´View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
