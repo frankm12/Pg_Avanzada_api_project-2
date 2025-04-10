@@ -167,6 +167,7 @@
             this.btn_graficos.TabIndex = 2;
             this.btn_graficos.Text = "Graficos";
             this.btn_graficos.UseVisualStyleBackColor = false;
+            this.btn_graficos.Click += new System.EventHandler(this.btn_graficos_Click);
             // 
             // pn_informacion
             // 

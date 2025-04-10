@@ -129,13 +129,6 @@ namespace Pg_Avanzada_api_project_2
             // Margen automático
             chartArea.Position.Auto = true;
 
-            // Alternativa: Forzar 100% del área
-            //chartArea.Position.Auto = false;
-            //chartArea.Position.X = 0;
-            //chartArea.Position.Y = 0;
-            //chartArea.Position.Width = 100;
-            //chartArea.Position.Height = 100;
-
             chart1.ChartAreas.Add(chartArea);
 
             // Crear serie de datos

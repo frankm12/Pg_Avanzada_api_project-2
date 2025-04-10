@@ -15,6 +15,7 @@ namespace Pg_Avanzada_api_project_2
     {
         Form2 dashboard;
         Buscar_form buscar_Form;
+        GraficosForm graficos_Form;
         bool sidebarExpand = true;
         public Form1()
         {
@@ -50,17 +51,39 @@ namespace Pg_Avanzada_api_project_2
             btn_dashboard.Text = "";
             btn_graficos.Text = "";
             btn_informacion.Text = "";
+
             if (buscar_Form == null)
             {
                 buscar_Form = new Buscar_form();
-                buscar_Form.FormClosed += Dashboard_FormClosed;
+                buscar_Form.FormClosed += (s, e) => buscar_Form = null; 
                 buscar_Form.MdiParent = this;
                 buscar_Form.Dock = DockStyle.Fill;
                 buscar_Form.Show();
             }
             else
             {
-                dashboard.Activate();
+                buscar_Form.Activate(); 
+            }
+        }
+
+        public void AbrirGraficos()
+        {
+            btn_buscar.Text = "";
+            btn_dashboard.Text = "";
+            btn_graficos.Text = "";
+            btn_informacion.Text = "";
+
+            if (graficos_Form == null)
+            {
+                graficos_Form = new GraficosForm();
+                graficos_Form.FormClosed += (s, e) => graficos_Form = null;
+                graficos_Form.MdiParent = this;
+                graficos_Form.Dock = DockStyle.Fill;
+                graficos_Form.Show();
+            }
+            else
+            {
+                graficos_Form.Activate();
             }
         }
 
@@ -124,12 +147,17 @@ namespace Pg_Avanzada_api_project_2
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
-            dashboard = null;
+
         }
 
         private void btn_buscar_Click(object sender, EventArgs e)
         {
             AbrirBuscar();
+        }
+
+        private void btn_graficos_Click(object sender, EventArgs e)
+        {
+            AbrirGraficos();
         }
     }
 }

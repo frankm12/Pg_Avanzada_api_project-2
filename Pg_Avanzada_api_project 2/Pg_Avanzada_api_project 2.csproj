@@ -61,13 +61,21 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Interfaces\IGraphView.cs" />
+    <Compile Include="Interfaces\ISearchView.cs" />
     <Compile Include="Interfaces\ITrendingCryptocurrencyView.cs" />
     <Compile Include="Model\CryptocurrencyModel.cs" />
+    <Compile Include="Model\MarketChartDataModel.cs" />
+    <Compile Include="Model\Model_buscar.cs" />
     <Compile Include="Model\Trending_Model.cs" />
     <Compile Include="Presenter\CryptocurrencyPresenter.cs" />
+    <Compile Include="Presenter\GraphPresenter.cs" />
+    <Compile Include="Presenter\SearchPresenter.cs" />
     <Compile Include="Presenter\TrendingCryptocurrencyPresenter.cs" />
     <Compile Include="Services\CoinGeckoApiService.cs" />
     <Compile Include="Interfaces\IApiService.cs" />
+    <Compile Include="Services\CoinGeckoChartService.cs" />
+    <Compile Include="Services\CoinGeckoSearchService.cs" />
     <Compile Include="Services\Trending_api_services.cs" />
     <Compile Include="´View\Buscar_form.cs">
       <SubType>Form</SubType>
@@ -90,7 +98,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Interfaces\ICryptocurrencyView.cs" />
+    <Compile Include="´View\GraficosForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="´View\GraficosForm.Designer.cs">
+      <DependentUpon>GraficosForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="´View\IViewFormulario_Principal.cs" />
+    <EmbeddedResource Include="´View\Buscar_form.resx">
+      <DependentUpon>Buscar_form.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="´View\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -106,6 +123,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="´View\GraficosForm.resx">
+      <DependentUpon>GraficosForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
