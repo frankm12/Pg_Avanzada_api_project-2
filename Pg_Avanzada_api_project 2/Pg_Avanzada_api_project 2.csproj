@@ -104,6 +104,12 @@
     <Compile Include="´View\GraficosForm.Designer.cs">
       <DependentUpon>GraficosForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="´View\Informacion_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="´View\Informacion_form.Designer.cs">
+      <DependentUpon>Informacion_form.cs</DependentUpon>
+    </Compile>
     <Compile Include="´View\IViewFormulario_Principal.cs" />
     <EmbeddedResource Include="´View\Buscar_form.resx">
       <DependentUpon>Buscar_form.cs</DependentUpon>
@@ -125,6 +131,9 @@
     </Compile>
     <EmbeddedResource Include="´View\GraficosForm.resx">
       <DependentUpon>GraficosForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="´View\Informacion_form.resx">
+      <DependentUpon>Informacion_form.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -27,6 +27,7 @@ namespace Pg_Avanzada_api_project_2._View
             var presenter = new GraphPresenter(this, service);
             cbIntervalo.Items.AddRange(new[] { "Minutos", "Horas", "Días" });
             cbIntervalo.SelectedIndex = 0;
+            lblNombre.Text = "";
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)

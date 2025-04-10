@@ -16,24 +16,43 @@ namespace Pg_Avanzada_api_project_2
         Form2 dashboard;
         Buscar_form buscar_Form;
         GraficosForm graficos_Form;
-        bool sidebarExpand = true;
+        Informacion_form informacion_form;
+
+        bool sidebarExpandida = false; // empieza cerrada
+
         public Form1()
         {
             InitializeComponent();
+
+            // Configuración inicial del sidebar
             tableLayoutPanel1.Width = 90;
-            //llamamos el metodo dashboard para que se abra cuando se inicie el programa
+            OcultarTextoBotones();
+            menuTransition.Interval = 1;
+
+            // Mostrar el dashboard al iniciar
             AbrirDashboard();
         }
-        public void AbrirDashboard()
+        private void MostrarTextoBotones()
+        {
+            btn_buscar.Text = "Buscar";
+            btn_dashboard.Text = "Dashboard";
+            btn_graficos.Text = "Gráficos";
+            btn_informacion.Text = "Información";
+        }
+        private void OcultarTextoBotones()
         {
             btn_buscar.Text = "";
             btn_dashboard.Text = "";
             btn_graficos.Text = "";
             btn_informacion.Text = "";
+        }
+
+        public void AbrirDashboard()
+        {
             if (dashboard == null)
             {
                 dashboard = new Form2();
-                dashboard.FormClosed += Dashboard_FormClosed;
+                dashboard.FormClosed += (s, e) => dashboard = null;
                 dashboard.MdiParent = this;
                 dashboard.Dock = DockStyle.Fill;
                 dashboard.Show();
@@ -42,37 +61,44 @@ namespace Pg_Avanzada_api_project_2
             {
                 dashboard.Activate();
             }
-
-
+            lbl_dashboard.Text = "Dashboard";
         }
         public void AbrirBuscar()
         {
-            btn_buscar.Text = "";
-            btn_dashboard.Text = "";
-            btn_graficos.Text = "";
-            btn_informacion.Text = "";
-
             if (buscar_Form == null)
             {
                 buscar_Form = new Buscar_form();
-                buscar_Form.FormClosed += (s, e) => buscar_Form = null; 
+                buscar_Form.FormClosed += (s, e) => buscar_Form = null;
                 buscar_Form.MdiParent = this;
                 buscar_Form.Dock = DockStyle.Fill;
                 buscar_Form.Show();
             }
             else
             {
-                buscar_Form.Activate(); 
+                buscar_Form.Activate();
             }
+            lbl_dashboard.Text = "Buscar";
+        }
+
+        public void AbrirInformacion()
+        {
+            if (informacion_form == null)
+            {
+                informacion_form = new Informacion_form();
+                informacion_form.FormClosed += (s, e) => informacion_form = null;
+                informacion_form.MdiParent = this;
+                informacion_form.Dock = DockStyle.Fill;
+                informacion_form.Show();
+            }
+            else
+            {
+                informacion_form.Activate();
+            }
+            lbl_dashboard.Text = "Información";
         }
 
         public void AbrirGraficos()
         {
-            btn_buscar.Text = "";
-            btn_dashboard.Text = "";
-            btn_graficos.Text = "";
-            btn_informacion.Text = "";
-
             if (graficos_Form == null)
             {
                 graficos_Form = new GraficosForm();
@@ -85,79 +111,72 @@ namespace Pg_Avanzada_api_project_2
             {
                 graficos_Form.Activate();
             }
+            lbl_dashboard.Text = "Graficos";
+
         }
 
         private void menuTransition_Tick(object sender, EventArgs e)
         {
 
-            
-            if (sidebarExpand)
+            int velocidad = 40;
+            int anchoMax = 262;
+            int anchoMin = 90;
+
+            if (sidebarExpandida)
             {
-                tableLayoutPanel1.Width += 10;
-                if (tableLayoutPanel1.Width >= 262)
+                tableLayoutPanel1.Width -= velocidad;
+                if (tableLayoutPanel1.Width <= anchoMin)
                 {
-                    sidebarExpand = false;
                     menuTransition.Stop();
-                    pn_dashboard.Width = tableLayoutPanel1.Width;
-                    pn_buscar.Width = tableLayoutPanel1.Width;
-                    pn_graficos.Width = tableLayoutPanel1.Width;
-                    pn_informacion.Width = tableLayoutPanel1.Width;
-                    btn_buscar.Text = "Buscar";
-                    btn_dashboard.Text = "Dashboard";
-                    btn_graficos.Text = "Graficos";
-                    btn_informacion.Text = "Información";
-
+                    sidebarExpandida = false;
+                    tableLayoutPanel1.Width = anchoMin;
+                    OcultarTextoBotones();
                 }
-
-            } 
+            }
             else
             {
-                btn_buscar.Text = "";
-                btn_dashboard.Text = "";
-                btn_graficos.Text = "";
-                btn_informacion.Text = "";
-                tableLayoutPanel1.Width -= 10;
-                if (tableLayoutPanel1.Width <= 90)
-
+                tableLayoutPanel1.Width += velocidad;
+                if (tableLayoutPanel1.Width >= anchoMax)
                 {
-
-                    sidebarExpand = true;
                     menuTransition.Stop();
-
-                    pn_dashboard.Width = tableLayoutPanel1.Width;
-                    pn_buscar.Width = tableLayoutPanel1.Width;
-                    pn_graficos.Width = tableLayoutPanel1.Width;
-                    pn_informacion.Width = tableLayoutPanel1.Width;
-
+                    sidebarExpandida = true;
+                    tableLayoutPanel1.Width = anchoMax;
+                    MostrarTextoBotones();
                 }
-
             }
 
+            // Actualizar paneles laterales
+            pn_dashboard.Width = tableLayoutPanel1.Width;
+            pn_buscar.Width = tableLayoutPanel1.Width;
+            pn_graficos.Width = tableLayoutPanel1.Width;
+            pn_informacion.Width = tableLayoutPanel1.Width;
         }
 
         private void btn_menu_Click(object sender, EventArgs e)
         {
-            menuTransition.Start();
+            if (!menuTransition.Enabled)
+            {
+                // Ocultar texto antes de contraer
+                if (sidebarExpandida)
+                    OcultarTextoBotones();
+
+                menuTransition.Start();
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AbrirDashboard();
-        }
+        private void button1_Click(object sender, EventArgs e) => AbrirDashboard();
+
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
         {
 
         }
 
-        private void btn_buscar_Click(object sender, EventArgs e)
-        {
-            AbrirBuscar();
-        }
+        private void btn_buscar_Click(object sender, EventArgs e) => AbrirBuscar();
 
-        private void btn_graficos_Click(object sender, EventArgs e)
-        {
-            AbrirGraficos();
-        }
+        private void btn_graficos_Click(object sender, EventArgs e) => AbrirGraficos();
+
+        private void btn_informacion_Click(object sender, EventArgs e) => AbrirInformacion();
+
     }
 }

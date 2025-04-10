@@ -196,6 +196,7 @@
             this.btn_informacion.TabIndex = 2;
             this.btn_informacion.Text = "    Información";
             this.btn_informacion.UseVisualStyleBackColor = false;
+            this.btn_informacion.Click += new System.EventHandler(this.btn_informacion_Click);
             // 
             // menuTransition
             // 
