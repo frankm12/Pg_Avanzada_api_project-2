@@ -78,7 +78,7 @@ namespace Pg_Avanzada_api_project_2
                 ChartType = SeriesChartType.Column,
                 IsValueShownAsLabel = true,
                 ChartArea = "ChartArea1",
-                Color = Color.Gold
+                Color = Color.Orange
             };
 
             var topTrending = cryptocurrencies.Take(5);

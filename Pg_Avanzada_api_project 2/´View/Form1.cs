@@ -1,12 +1,7 @@
 ﻿using Pg_Avanzada_api_project_2._View;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Pg_Avanzada_api_project_2
@@ -18,6 +13,7 @@ namespace Pg_Avanzada_api_project_2
         GraficosForm graficos_Form;
         Informacion_form informacion_form;
 
+
         bool sidebarExpandida = false; // empieza cerrada
 
         public Form1()
@@ -28,9 +24,30 @@ namespace Pg_Avanzada_api_project_2
             tableLayoutPanel1.Width = 90;
             OcultarTextoBotones();
             menuTransition.Interval = 1;
+            this.WindowState = FormWindowState.Maximized;
 
             // Mostrar el dashboard al iniciar
             AbrirDashboard();
+            EstablecerBotonActivo(btn_dashboard);
+        }
+        private void EstablecerBotonActivo(Button botonActivo)
+        {
+            // Lista de todos los botones del menú
+            var botones = new List<Button> { btn_dashboard, btn_buscar, btn_graficos, btn_informacion };
+
+            foreach (var boton in botones)
+            {
+                if (boton == botonActivo)
+                {
+                    boton.BackColor = Color.Black; // Botón activo en negro
+                    boton.ForeColor = Color.White; // Texto blanco para contraste
+                }
+                else
+                {
+                    boton.BackColor = Color.FromArgb(70, 72, 74); 
+                    boton.ForeColor = Color.Gainsboro;
+                }
+            }
         }
         private void MostrarTextoBotones()
         {
@@ -164,7 +181,11 @@ namespace Pg_Avanzada_api_project_2
             }
         }
 
-        private void button1_Click(object sender, EventArgs e) => AbrirDashboard();
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AbrirDashboard();
+            EstablecerBotonActivo(btn_dashboard);
+        } 
 
 
         private void Dashboard_FormClosed(object sender, FormClosedEventArgs e)
@@ -172,11 +193,23 @@ namespace Pg_Avanzada_api_project_2
 
         }
 
-        private void btn_buscar_Click(object sender, EventArgs e) => AbrirBuscar();
+        private void btn_buscar_Click(object sender, EventArgs e) 
+        {
+            AbrirBuscar();
+            EstablecerBotonActivo(btn_buscar);
+        } 
 
-        private void btn_graficos_Click(object sender, EventArgs e) => AbrirGraficos();
+        private void btn_graficos_Click(object sender, EventArgs e) 
+        {
+            AbrirGraficos();
+            EstablecerBotonActivo(btn_graficos);
+        } 
 
-        private void btn_informacion_Click(object sender, EventArgs e) => AbrirInformacion();
+        private void btn_informacion_Click(object sender, EventArgs e)
+        {
+            AbrirInformacion();
+            EstablecerBotonActivo(btn_informacion);
+        }
 
     }
 }

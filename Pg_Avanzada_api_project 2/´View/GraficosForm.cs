@@ -28,6 +28,7 @@ namespace Pg_Avanzada_api_project_2._View
             cbIntervalo.Items.AddRange(new[] { "Minutos", "Horas", "Días" });
             cbIntervalo.SelectedIndex = 0;
             lblNombre.Text = "";
+            btnBuscar.Visible = false;
         }
 
         private void btnBuscar_Click(object sender, EventArgs e)
@@ -128,6 +129,19 @@ namespace Pg_Avanzada_api_project_2._View
             else
             {
                 ShowError("Por favor, completa el ID de la moneda y selecciona un intervalo.");
+            }
+        }
+
+        private void txtId_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+
+                var id = txtId.Text.Trim().ToLower();
+                var intervalo = cbIntervalo.SelectedItem.ToString();
+                if (!string.IsNullOrEmpty(id))
+                    OnRequestChart?.Invoke(this, (id, intervalo));
             }
         }
     }
